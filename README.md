@@ -23,15 +23,14 @@ Espaço alocado para descrever o que eu aprendi durante esta semana
 
 # 🏷Tecnologias
 <ul>
-<li><a href = "https://nodejs.org/en/" target = "__blank"> Node.js </a></li>
-<li><a href = "https://www.typescriptlang.org/" target = "__blank"> TypeScript </a></li>
-<li><a href = "http://knexjs.org/" target = "__blank">Knex.js</a></li>
-<li><a href = "https://expressjs.com/pt-br/" target = "__blank">Express.js</a></li>
-<li><a href = "https://www.sqlite.org/index.html" target = "__blank"> SQLite </a></li>
-<li><a href = "https://reactjs.org/" target = "__blank"> React </a></li>
-<li><a href = "https://reactnative.dev/" target = "__blank"> React Native</a></li>
-
-</ul>
+<li><b>Node.js</b></li>
+<li><b>TypeScript</b></li>
+<li><b>Knex.js</b></li>
+<li><b>Axios</b></li>
+<li><b>Expo</b></li>
+<li><b>React</b></li>
+<li><b>React Native</b></li>
+<li><b>SQLite</b></li>
 </ul>
 
 # 🔥Projeto - Como usar?
@@ -56,6 +55,21 @@ Este projeto está configurado para rodar na porta 3333!
 
 ## 💻Frontend
 ## 🚧EM CONSTRUÇÃO🚧
+
+## 📱Mobile
+
+ Para rodar o projeto, primeiramente instale o aplicativo <b>expo</b> disponivel na loja de aplicativos no seu celular(Seja android ou IOS).
+
+ ```sh
+ #Utilizando o terminal no diretório mobile, use este comando para iniciar o expo
+ npm start
+ ```
+
+ Em seguida, leia o QRCode em seu celular, no caso de emulador o expo vem com uma função de link.
+
+ <Strong>⚠ OBS: Lembre-se de ter iniciado o servidor</Strong>
+
+
 
 
 # 📒API REST

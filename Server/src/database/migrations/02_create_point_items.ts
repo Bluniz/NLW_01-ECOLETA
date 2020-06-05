@@ -7,12 +7,16 @@ export async function up(knex: Knex){
 
    //Todo id dessa tabela precisa ser um id valido  dentro da tabela points
    table.integer('point_id')
+   .unsigned()
    .notNullable()
    .references('id')
    .inTable('points');
 
    table.integer('item_id')
-   .notNullable;
+   .unsigned()
+   .notNullable()
+   .references("id")
+   .inTable('items')
   });
 }
 

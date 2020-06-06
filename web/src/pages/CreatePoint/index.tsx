@@ -21,6 +21,7 @@ const CreatePoint = () => {
   const [selectedPosition, setSelectedPosition] = useState<[number, number]>([0,0]);
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
   const [initialPosition, setInitialPosition] = useState<[number, number]>([0,0]);
+  const [selectedFile, setSelectedFile] = useState<File>();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -180,7 +181,7 @@ const CreatePoint = () => {
       <form onSubmit = {handleSubmit}>
         <h1>Cadastro <br />do ponto de coleta</h1>
 
-        <Dropzone/>
+        <Dropzone onFileUploaded={setSelectedFile}/>
 
         <fieldset>
           <legend>

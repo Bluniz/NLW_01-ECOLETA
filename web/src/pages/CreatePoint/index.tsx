@@ -14,6 +14,7 @@ import Swal from 'sweetalert2'
 
 
 const CreatePoint = () => {
+  
   const [items, setItems] = useState<Item[]>([]);
   const [ufs, setUfs] = useState<string[]>([]);
   const [cities, setCities] = useState<string[]>([]);
@@ -25,6 +26,8 @@ const CreatePoint = () => {
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
   const [initialPosition, setInitialPosition] = useState<[number, number]>([0,0]);
   const [selectedFile, setSelectedFile] = useState<File>();
+
+
 
   const [formData, setFormData] = useState({
     name: '',
@@ -56,7 +59,7 @@ const CreatePoint = () => {
     api.get('items').then(response => {
       setItems(response.data);
     })
-  });
+  },[]);
 
   useEffect(() => {
     axios.get<IBGEUFResponse[]>('https://servicodados.ibge.gov.br/api/v1/localidades/estados').then(response => {
@@ -170,22 +173,18 @@ const CreatePoint = () => {
 
       await api.post('points', data);
       
-      
-      const Toast = Swal.mixin({
-        toast: true,
-        position: 'center',
-        showConfirmButton: false,
-        timer: 1500,
-        timerProgressBar: true,
-        onOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-      })
-      
-      Toast.fire({
+      //Alert personalizado
+      Swal.fire({
+        title: 'Sweet!',
         icon: 'success',
-        title: 'Ponto cadastrado com sucesso!'
+        text: 'Ponto Cadastrado com sucesso',
+        imageUrl: '../../assets/home-background.svg',
+        imageWidth: 400,
+        imageHeight: 200,
+        imageAlt: 'Custom image',
+        background: ' rgba(1,0,0,0.2)',
+        showConfirmButton: false,
+        timer: 1500
       })
 
       //Demorar de aparecer
@@ -253,6 +252,7 @@ const CreatePoint = () => {
           <div className="field-group">
             <div className="field">
               <label htmlFor="uf">Estado(UF)</label>
+              
               <select name="uf"
                 id="uf"
                 value={selectedUf}

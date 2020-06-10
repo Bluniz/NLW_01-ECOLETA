@@ -182,7 +182,7 @@ const CreatePoint = () => {
         imageWidth: 400,
         imageHeight: 200,
         imageAlt: 'Custom image',
-        background: ' rgba(1,0,0,0.2)',
+        background: ' #fff',
         showConfirmButton: false,
         timer: 1500
       })

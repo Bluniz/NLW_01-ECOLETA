@@ -1,9 +1,9 @@
 import React, { useEffect, ChangeEvent, useState } from 'react';
 import {Link} from 'react-router-dom'
-import {FiArrowLeft, FiSearch} from 'react-icons/fi'
+import {FiArrowLeft} from 'react-icons/fi'
 import axios from 'axios';
 import api from '../../services/api';
-
+import Swal from 'sweetalert2'
 
 import './styles.css'
 
@@ -21,13 +21,32 @@ interface Params{
   selectedCity: string
 }
 
+interface Data{
+  point: {
+    id: number,
+    image: string,
+    image_url: string,
+    name: string,
+    email: string,
+    whatsapp: string,
+    city: string,
+    uf: string 
+  },
+  items: {
+    title: string,
+  }[]
+}
+
 const SearchPoints = () => {
   const [ufs, setUfs] = useState<string[]>([]);
   const [cities, setCities] = useState<string[]>([]);
   const [points, setPoints] = useState<Point[]>([]);
   const [selectedUf, setSelectedUf] = useState('0');
   const [selectedCity, setSelectedCity] = useState('0');
-  let count = 0;
+
+  var data: Data;
+
+  
   
 
   const routeParams = {selectedUf, selectedCity} as Params;
@@ -82,6 +101,7 @@ const SearchPoints = () => {
   },[selectedCity]);//Sempre que o valor da cidade selecionada mudar, irá renderizar novamente
 
   
+   
 
   function handleSelectUf(event: ChangeEvent<HTMLSelectElement>) {
     const uf = event.target.value;
@@ -96,7 +116,39 @@ const SearchPoints = () => {
     setSelectedCity(city);
   }
 
-  function handleSeach(){
+  async function handleSeach(id: number){
+
+    await api.get(`points/${id}`).then(response => {
+      data = response.data;
+    })
+  
+
+    Swal.fire({
+      title: `${data.point.name}`,
+      html:`
+      <br><br> ${data.items.map(item => item.title).join(', ')} <br>
+      Email: ${data.point.email} <br>
+      Whatsapp: ${data.point.whatsapp} <br><br>
+
+      <br><br>
+
+
+      ${data.point.city},${data.point.uf}
+      
+      
+      `,
+      imageUrl: `${data.point.image_url}`,
+      imageWidth: 400,
+      imageHeight: 200,
+      imageAlt: 'Custom image',
+      showCloseButton: true,
+      showConfirmButton: false,
+      
+
+
+
+    })
+
   }
 
   
@@ -155,7 +207,7 @@ const SearchPoints = () => {
 
         {points.map(point =>(
           
-          <a href="#" key={point.id}>
+          <a href="#" key={point.id} onClick={()=>{handleSeach(point.id)}}>
           <div className="card">
             <img src={point.image_url} alt={point.name}/>
             <h1>{point.name}</h1>

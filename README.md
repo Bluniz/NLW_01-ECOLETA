@@ -4,7 +4,6 @@
 </h1>
 <h1 align = "center">
  <img src = "./.github/capa.svg"><br>
- 🚧Em construção🚧
 </h1>
 
 
